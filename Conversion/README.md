@@ -11,14 +11,14 @@ Customization
 
 The conversion script does not take any parameters currently.
 
-The output can be customized with the static strings that can be found in implementation.py and substitutions.py, for example the class name prefix that is currently WMGeneric (ADD_PREFIX).
+The output can be customized with the static strings that can be found in `implementation.py` and `substitutions.py`, for example the class name prefix that is currently WMGeneric (`ADD_PREFIX`).
 
 Converting catgories to Cocoa collections
 =========================================
 
 It is possible to create the macros with methods that are defined in custom categories. An example how this is done is found in `Collections/User created category`.
 
-All the input of convert.py is concatenated, so you can just call `./convert.py NSArray.h NSArray+Map.h`. In this example, ADD_PREFIX was changed so that multiple macros of the same class can exist in one project.
+All the input of convert.py is concatenated, so you can just call `./convert.py NSArray.h NSArray+Map.h`. In this example, ` ADD_PREFIX` was changed so that multiple macros of the same class can exist in one project.
 
 Converting non-standard collections
 ===================================
@@ -40,7 +40,7 @@ Try to adhere to the naming scheme of the standard container classes:
 
 For example, `arrayByFiltering:` will convert correctly out of the box, while `map:` would not.
 
-The informal naming scheme is to be found in the regexes of `_collection_dict` of substitutions.py
+The informal naming scheme is defined through the regexes of `_collection_dict` of `substitutions.py`.
 
 Can't adhere to the naming scheme
 =================================
@@ -62,11 +62,11 @@ Make sure that your additional regexes have no ill effect on the creation of the
 Unsupported constructs
 ======================
 
-The goal of this script is to parse the standard collections correctly, not a Objective-C header file. No compiler infrastructure is involved. Here's a short list of constructs which will fail:
+The goal of this script is to parse the standard collection correctly, not a Objective-C header file. No compiler infrastructure is involved. Here's a short list of constructs which will fail:
 
 * C preprocessor directives:
      
-    Pretty much everything (`#define, ifdef, #else, ...`) will fail, with the followin exceptions:
+    Pretty much everything (`#define, ifdef, #else, ...`) will fail, with the following exceptions:
     + `#import` (passed through, not resolved)
     + `#if x, #endif`: supported for a unique x, not for multiple per file
     + `#if TARGET_WIN_32 #else x #endif`: code x is used, rest thrown out
