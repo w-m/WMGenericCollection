@@ -1,14 +1,16 @@
 WMGenericCollection
 ===================
 
-This project provides templates which can be used to easily create custom collection subclasses. The custom classes store a fixed type, e.g. an NSArray subclass which only stores NSStrings. This helps write more readable code, will generate compiler warnings on incompatible types, easier property access for container members, and much improved code completion.
+This project provides templates which can be used to easily create custom collection subclasses. The custom classes store a fixed type - e.g. an NSArray subclass which only stores NSString objects. This helps writing more readable code, will generate compiler warnings on incompatible types, allow for easier property access for container members, and enables much improved code completion.
 
-The templates are provided as C preprocessor macros, as Objective-C is lacking a better option. There are no actual implementations of the methods provided. All interfaces simply redefine the methods of their super collection (NSArray, NSDictionary, NSSet) and return objects of these classes in their `+alloc` implementation.
+The templates are provided as C preprocessor macros, as Objective-C lacks a better option. The templates do not provide implementations of the methods. All interfaces simply redefine the methods of their super collection (`NSArray`, `NSDictionary`, `NSSet`) and return objects of these classes in their `+alloc` implementation.
+
+A couple of examples where it makes sense to use custom collections (`WMStringArray`, `WMMutableStringArray`, `WMStringKeyDictionary`) which were created with the templates:
 
 Better self-documentation of code
 ---------------------------------
 
-Often, collections make return types or arguments of a method. If they contain a fixed type, this can be made clear in the code:
+Often, methods return collections or take them as an argument. If the collection wraps a fixed type, this context information can be provided for the reader of the code:
 
     @property (nonatomic, retain) WMNumberArray *numbers;
     - (WMNumberArray *)numbersGreaterThan:(NSNumber *)compNumber;
@@ -18,7 +20,7 @@ Compiler warnings when using incompatible types
 
 When using collections with a specified value type, the compiler will issue a warning on all actions which assign objects of incompatible types.
 
-![Compiler warnings on incompatible types](/usage examples/set warning.png)
+![Compiler warnings on incompatible types](/usage examples/set warning.png )
   
 Property access
 ---------------
@@ -45,10 +47,10 @@ When accessing values of a collection, the compiler will know the specified type
 Custom NSArray
 ==============
 
-To create a custom NSArray containing only NSString, create files for a new Objective-C class, which we will name WMStringArray in this example. Replace the @interface and @implementation blocks with the following:
+To create a custom NSArray containing only NSString objects, add a new Objective-C class to the project, which we will name `WMStringArray` in this example. Replace the `@interface` and `@implementation` blocks with the following:
 
     // WMStringArray.h
-    #import "WMGenericArray.h" // import template definitions
+    #import "WMGenericArray.h" // import template definitions from Collections/Cocoa headers
   
     WMGENERICARRAY_INTERFACE(NSString *, // type of the value class
                              WMStringArray, WMMutableStringArray) // generated class names
@@ -57,12 +59,12 @@ To create a custom NSArray containing only NSString, create files for a new Obje
     WMGENERICARRAY_SYNTHESIZE(NSString *, // type of the value class
                               WMStringArray, WMMutableStringArray) // generated class names
 
-With these two lines you have created classes `WMStringArray` and `WMMutableStringArray`, which provide the complete interface of NSArray and NSMutableArray, while taking and returning `NSString *`, where NSArray would use `id`.
+And that's it! With these two lines you have created two classes, `WMStringArray` and `WMMutableStringArray`, which provide the complete interface of `NSArray` and `NSMutableArray`. The big difference: they will take and return `NSString *`, where NSArray would use `id`.
 
 Custom NSSet
 ============
 
-Sets are created in a similar manner, but take an additional parameter, as they interact with NSArrays, for example in `-allObjects`. The type of the collection that is returned there can be configured as well. We can use the WMStringArray we just created like this:
+Sets are created in a similar manner, but take an additional parameter, as they interact with NSArrays, for example in `-allObjects`. The type of the collection that is returned there needs to be configured as well. We can use the WMStringArray we just created like this:
 
     WMGENERICSET_INTERFACE(NSString *, // type of the value class
                            WMStringArray *, // what should '- (...)allObjects' return?
@@ -75,17 +77,19 @@ Custom NSDictionary
 
 Dictionaries require parameters for the types of the represented values and keys. In this example, we will create an NSDictionary which will take any value type, but requires NSString keys.
 
-This makes the first two parameters `id`(any value) and `NSString *`(key). The third value is the type of value collections, as in `-allValues`, in our case simply NSArray *. The following two parameters are the collection types for the keys, an array and a set. We have already defined both, so let's use them, and specify the names for the resulting classes:
+This makes the first two parameters `id`(any value) and `NSString *`(key). The third value is the type of value collections, as in `-allValues`, in our case simply `NSArray *`.
+
+The following two parameters are the collection types for the keys, an array and a set. We have already defined both, so let's use them, and specify the names for the resulting classes:
 
     WMGENERICDICTIONARY_INTERFACE(id, NSString *, // types of value class, NSCopying compliant key class
-                                  NSArray *, // (...)allValues?
-                                  WMStringArray *, WMStringSet *, // (...)allKeys?, (...)keysOfEntries...?
+                                  NSArray *, // -(...)allValues?
+                                  WMStringArray *, WMStringSet *, // -(...)allKeys?, -(...)keysOfEntries:?
                                   WMStringKeyDictionary, WMMutableStringKeyDictionary)
 
 Notes
 =====
 
-These templatest provide merely syntactic sugar at development time. At runtime, `WMStringArray` will return an object from the `NSArray` class cluster, *not* a `WMStringArray`. This forbids dynamic type checking:
+These templates provide merely syntactic sugar at development time. At runtime, `WMStringArray` will return an object from the `NSArray` class cluster, *not* a `WMStringArray`. This forbids dynamic type checking:
 
     // caution! no actual implementations for the classes provided
     if ([[stringArray class] isKindOfClass:[WMStringArray class]]) {
@@ -95,46 +99,44 @@ These templatest provide merely syntactic sugar at development time. At runtime,
 
 For most methods of the Cocoa classes, type checks are performed at compilation time and will throw warnings. Two exceptions stand out:
 
-*Object creation:*
+* Object creation:
+    
+        WMStringArray *stringArray = (WMStringArray *)@[@"abc", @"bcd", @"cde"];
+    This needs a cast (can be `(id)`) and does not check contained types.
 
-    WMStringArray *stringArray = (WMStringArray *)@[@"abc", @"bcd", @"cde"];
-
-This needs a cast (can be (id)) and does not check contained types.
-
-*for loops:*
-
-    for (NSNumber *n in stringArray) {
-        ...
-    }
-
-Use `enumerateObjectsUsingBlock:` instead, which will check the type and even provide it correctly in the automatically created code block in Xcode.
+* for loops:
+    
+        for (NSNumber *n in stringArray) {
+            ...
+        }
+    Use `enumerateObjectsUsingBlock:` instead, which will check the type and even provide it correctly in the automatically created code block in Xcode.
 
 How does it work
 ================
 
 The code that is created with the macros provides interfaces of classes which
 * are subclasses of a Cocoa collection
-* redefine all methods of the super class by substituting (id) with the given type
-* in case of the mutable subclasses, redefine all methods of NSArray and NSMutableArray with substitution
+* redefine all methods of the super class by substituting (`id`) with the given type
+* in case of the mutable subclasses, redefine all methods of both the mutable class and its immutable parent with substitution
 
-The SYNTHESIZE macro will create an @implementation block containing `+alloc` and `+allocWithZone:` which will return the objects that are created when calling the methods on the original (inherited) class.
+The SYNTHESIZE macro will create an `@implementation` block containing `+alloc` and `+allocWithZone:` which will basically return `[super alloc]`. No other methods are implemented.
 
 Furthermore, clang is told to ignore duplicated methods (redefinition in subclasses) and missing implementations, as another class is returned on `alloc` and none of the defined methods will ever be called.
 
 Overhead
 --------
 
-There is no overhead in using WMGenericCollections, as they only provide an interface for easier development, but use the standard Cocoa collections in runtime.
+There is no overhead in using WMGenericCollections, as they only provide an interface for easier development, but use the standard Cocoa collections at runtime.
 
 As the only implementation provided is that of redirecting object creating, there is a theoretical overhead (of one method call) there, but it does not create an actual measurable difference to normal object creation.
 
-An overhead on method calls on the object after creation is not theoretically possible, as the standard objects are used.
+An overhead on method calls on the object after its creation is not theoretically possible, as the standard objects are used.
 
 Custom categories and collections
 =================================
 
-This project provides the macro for subclasses of NSArray, NSMutableArray, NSSet, NSMutableSet, NSCountedSet, NSDictionary and NSMutableDictionary, which are created from the Foundation headers of the 10.8 SDK.
+This project provides the macro for subclasses of `NSArray`, `NSMutableArray`, `NSSet`, `NSMutableSet`, `NSCountedSet`, `NSDictionary` and `NSMutableDictionary`, which are created from the Foundation headers of the 10.8 SDK.
 
-The conversion is done with a python script that parses Objective-C header files and generates the macro.
+The conversion is done with a [python script](Conversion/convert.py) that parses Objective-C header files and generates the macro.
 
-It is possible to generate custom macros for other collections, or categories of the standard Cocoa collections. Some work may be required. See the README in the Collections folder.
+It is possible to generate custom macros for other collections, or categories of the standard Cocoa collections. Some work may be required to get it right. See the README in the [Conversion folder](Conversion/).
