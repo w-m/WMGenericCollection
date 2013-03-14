@@ -1,34 +1,31 @@
 WMGenericCollection
 ===================
 
-This project provides templates which can be used to create custom collection classes which store a fixed type in a simple way, e.g. an NSArray which only stores NSStrings.
+This project provides templates which can be used to easily create custom collection subclasses. The custom classes store a fixed type, e.g. an NSArray subclass which only stores NSStrings. This helps write more readable code, will generate compiler warnings on incompatible types, easier property access for container members, and much improved code completion.
 
-The templates are provided as C preprocessor macros, as Objective-C is lacking a better option. There are no actual implementations provided - all interfaces simply redefine the methods of their super collection (NSArray, NSDictionary, NSSet) and return objects of these classes in `+alloc`.
-
-Use cases
-=========
+The templates are provided as C preprocessor macros, as Objective-C is lacking a better option. There are no actual implementations of the methods provided. All interfaces simply redefine the methods of their super collection (NSArray, NSDictionary, NSSet) and return objects of these classes in their `+alloc` implementation.
 
 Better self-documentation of code
 ---------------------------------
 
 Often, collections make return types or arguments of a method. If they contain a fixed type, this can be made clear in the code:
 
-  @property (nonatomic, retain) WMNumberArray *numbers;
-  - (WMNumberArray *)numbersGreaterThan:(NSNumber *)compNumber;
+    @property (nonatomic, retain) WMNumberArray *numbers;
+    - (WMNumberArray *)numbersGreaterThan:(NSNumber *)compNumber;
 
 Compiler warnings when using incompatible types
 -----------------------------------------------
 
-  WMNumberArray *numberArray;
-  ...
-  NSString *someString = numberArray[0]; // Compiler will warn of incompatible types
+    WMNumberArray *numberArray;
+    ...
+    NSString *someString = numberArray[0]; // Compiler will warn of incompatible types
   
 Property access
 ---------------
 
-  WMNumberArray *numberArray;
-  ...
-  NSInteger i = numberArray[0].integerValue; // possible on WMNumberArray, error not on NSArray
+    WMNumberArray *numberArray;
+    ...
+    NSInteger i = numberArray[0].integerValue; // possible on WMNumberArray, error on NSArray
 
 Automatic code creation improved
 --------------------------------
@@ -46,15 +43,15 @@ Custom NSArray
 
 To create a custom NSArray containing only NSString, create files for a new Objective-C class, which we will name WMStringArray in this example. Replace the @interface and @implementation blocks with the following:
 
-  // WMStringArray.h
-  #import "WMGenericArray.h" // template definition
+    // WMStringArray.h
+    #import "WMGenericArray.h" // template definition
   
-  WMGENERICARRAY_INTERFACE(NSString *, // type of the value class
-                           WMStringArray, WMMutableStringArray) // generated class names
+    WMGENERICARRAY_INTERFACE(NSString *, // type of the value class
+                             WMStringArray, WMMutableStringArray) // generated class names
 
-  // WMStringArray.m
-  WMGENERICARRAY_SYNTHESIZE(NSString *, // type of the value class
-                            WMStringArray, WMMutableStringArray) // generated class names
+    // WMStringArray.m
+    WMGENERICARRAY_SYNTHESIZE(NSString *, // type of the value class
+                              WMStringArray, WMMutableStringArray) // generated class names
 
 With these two lines you have created classes `WMStringArray` and `WMMutableStringArray`, which provide the complete interface of NSArray and NSMutableArray, while taking and returning `NSString *`, where NSArray would use `id`.
 
@@ -63,11 +60,11 @@ Custom NSSet
 
 Sets are created in a similar manner, but take an additional parameter, as they interact with NSArrays, for example in `-allObjects`. The type of the collection that is returned there can be configured as well. We can use the WMStringArray we just created like this:
 
-  WMGENERICSET_INTERFACE(NSString *, // type of the value class
-                         WMStringArray *, // what should '- (...)allObjects' return?
-                         WMStringSet, WMMutableStringSet, WMCountedStringSet) // generated class names
+    WMGENERICSET_INTERFACE(NSString *, // type of the value class
+                           WMStringArray *, // what should '- (...)allObjects' return?
+                           WMStringSet, WMMutableStringSet, WMCountedStringSet) // generated class names
 
-  // don't forget to put WMGENERICSET_SYNTHESIZE with the same parameters in the implementation file
+    // don't forget to put WMGENERICSET_SYNTHESIZE with the same parameters in the implementation file
 
 Custom NSDictionary
 ===================
@@ -76,10 +73,10 @@ Dictionaries require parameters for the types of the represented values and keys
 
 This makes the first two parameters `id`(any value) and `NSString *`(key). The third value is the type of value collections, as in `-allValues`, in our case simply NSArray *. The following two parameters are the collection types for the keys, an array and a set. We have already defined both, so let's use them, and specify the names for the resulting classes:
 
-  WMGENERICDICTIONARY_INTERFACE(id, NSString *, // types of value class, NSCopying compliant key class
-                                NSArray *, // (...)allValues?
-                                WMStringArray *, WMStringSet *, // (...)allKeys?, (...)keysOfEntries...?
-                                WMStringKeyDictionary, WMMutableStringKeyDictionary)
+    WMGENERICDICTIONARY_INTERFACE(id, NSString *, // types of value class, NSCopying compliant key class
+                                  NSArray *, // (...)allValues?
+                                  WMStringArray *, WMStringSet *, // (...)allKeys?, (...)keysOfEntries...?
+                                  WMStringKeyDictionary, WMMutableStringKeyDictionary)
 
 Notes
 =====
@@ -94,15 +91,19 @@ These templatest provide merely syntactic sugar at development time. At runtime,
 
 For most methods of the Cocoa classes, type checks are performed at compilation time and will throw warnings. Two exceptions stand out:
 
-* Object creation: 
+*Object creation:*
+
     WMStringArray *stringArray = (WMStringArray *)@[@"abc", @"bcd", @"cde"];
 
-  This needs a cast (can be (id)) and does not check contained types.
+This needs a cast (can be (id)) and does not check contained types.
 
-* for loops:
-    for (NSNumber *n in stringArray) {}
+*for loops:*
 
-  Use `enumerateObjectsUsingBlock:` instead, which will check the type and even provide it correctly in the automatically created code block in Xcode.
+    for (NSNumber *n in stringArray) {
+        ...
+    }
+
+Use `enumerateObjectsUsingBlock:` instead, which will check the type and even provide it correctly in the automatically created code block in Xcode.
 
 How does it work
 ================
