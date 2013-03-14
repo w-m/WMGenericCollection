@@ -22,6 +22,7 @@
 - (void)stringArrays {
     WMStringArray *stringArray = (WMStringArray *)@[@"abc", @"bcd", @"cde"];
 
+
     // warn me: can't assign string to number
     NSNumber *someNumber = stringArray[0];
 
@@ -38,7 +39,7 @@
 
     // caution! no actual implementations for the classes provided
     if ([[stringArray class] isKindOfClass:[WMStringArray class]]) {
-        // it is not. it's an NSArray. no duck typing!
+        // it is not. it's an NSArray. no type checking at runtime!
         NSLog(@"stringArray isKindOf: WMStringArray"); // will not log
     }
 }
