@@ -13,12 +13,12 @@ The conversion script does not take any parameters currently.
 
 The output can be customized with the static strings that can be found in `implementation.py` and `substitutions.py`, for example the class name prefix that is currently WMGeneric (`ADD_PREFIX`).
 
-Converting catgories to Cocoa collections
+Converting catgories of Cocoa collections
 =========================================
 
-It is possible to create the macros with methods that are defined in custom categories. An example how this is done is found in `Collections/User created category`.
+It is possible to create the templates containing methods that are defined in custom categories. An example how this is done is found in `Collections/User created category`.
 
-All the input of convert.py is concatenated, so you can just call `./convert.py NSArray.h NSArray+Map.h`. In this example, ` ADD_PREFIX` was changed so that multiple macros of the same class can exist in one project.
+All the input of convert.py is concatenated, so you can just call `./convert.py NSArray.h NSArray+Map.h`. In this example, `ADD_PREFIX` was changed to WMGenericFunctional, so that multiple macros of the same class can exist in one project without name collision.
 
 Converting non-standard collections
 ===================================
