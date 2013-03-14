@@ -17,6 +17,24 @@
 		97BECBAC16F21C2B0056ACCF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97BECB8C16F21C2B0056ACCF /* Cocoa.framework */; };
 		97BECBB416F21C2B0056ACCF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 97BECBB216F21C2B0056ACCF /* InfoPlist.strings */; };
 		97BECBB716F21C2B0056ACCF /* WMGenericCollectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BECBB616F21C2B0056ACCF /* WMGenericCollectionTests.m */; };
+		97BECBCC16F21D480056ACCF /* WMFraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BECBC716F21D480056ACCF /* WMFraction.m */; };
+		97BECBCD16F21D480056ACCF /* WMFraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BECBC716F21D480056ACCF /* WMFraction.m */; };
+		97BECBCE16F21D480056ACCF /* WMNumberArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BECBC916F21D480056ACCF /* WMNumberArray.m */; };
+		97BECBCF16F21D480056ACCF /* WMNumberArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BECBC916F21D480056ACCF /* WMNumberArray.m */; };
+		97BECBD016F21D480056ACCF /* WMNumberStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BECBCB16F21D480056ACCF /* WMNumberStore.m */; };
+		97BECBD116F21D480056ACCF /* WMNumberStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BECBCB16F21D480056ACCF /* WMNumberStore.m */; };
+		97BECC1016F21DF80056ACCF /* WMGenericCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BECC0316F21DF80056ACCF /* WMGenericCollection.m */; };
+		97BECC1116F21DF80056ACCF /* WMGenericCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BECC0316F21DF80056ACCF /* WMGenericCollection.m */; };
+		97BECC1216F21DF80056ACCF /* WMGenericFunctionalCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BECC0A16F21DF80056ACCF /* WMGenericFunctionalCollection.m */; };
+		97BECC1316F21DF80056ACCF /* WMGenericFunctionalCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BECC0A16F21DF80056ACCF /* WMGenericFunctionalCollection.m */; };
+		97BECC1416F21DF80056ACCF /* convert.py in Resources */ = {isa = PBXBuildFile; fileRef = 97BECC0C16F21DF80056ACCF /* convert.py */; };
+		97BECC1516F21DF80056ACCF /* convert.py in Resources */ = {isa = PBXBuildFile; fileRef = 97BECC0C16F21DF80056ACCF /* convert.py */; };
+		97BECC1616F21DF80056ACCF /* implementation.py in Resources */ = {isa = PBXBuildFile; fileRef = 97BECC0D16F21DF80056ACCF /* implementation.py */; };
+		97BECC1716F21DF80056ACCF /* implementation.py in Resources */ = {isa = PBXBuildFile; fileRef = 97BECC0D16F21DF80056ACCF /* implementation.py */; };
+		97BECC1816F21DF80056ACCF /* parsing.py in Resources */ = {isa = PBXBuildFile; fileRef = 97BECC0E16F21DF80056ACCF /* parsing.py */; };
+		97BECC1916F21DF80056ACCF /* parsing.py in Resources */ = {isa = PBXBuildFile; fileRef = 97BECC0E16F21DF80056ACCF /* parsing.py */; };
+		97BECC1A16F21DF80056ACCF /* substitutions.py in Resources */ = {isa = PBXBuildFile; fileRef = 97BECC0F16F21DF80056ACCF /* substitutions.py */; };
+		97BECC1B16F21DF80056ACCF /* substitutions.py in Resources */ = {isa = PBXBuildFile; fileRef = 97BECC0F16F21DF80056ACCF /* substitutions.py */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +67,25 @@
 		97BECBB316F21C2B0056ACCF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		97BECBB516F21C2B0056ACCF /* WMGenericCollectionTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMGenericCollectionTests.h; sourceTree = "<group>"; };
 		97BECBB616F21C2B0056ACCF /* WMGenericCollectionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMGenericCollectionTests.m; sourceTree = "<group>"; };
+		97BECBC616F21D480056ACCF /* WMFraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMFraction.h; sourceTree = "<group>"; };
+		97BECBC716F21D480056ACCF /* WMFraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMFraction.m; sourceTree = "<group>"; };
+		97BECBC816F21D480056ACCF /* WMNumberArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNumberArray.h; sourceTree = "<group>"; };
+		97BECBC916F21D480056ACCF /* WMNumberArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNumberArray.m; sourceTree = "<group>"; };
+		97BECBCA16F21D480056ACCF /* WMNumberStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNumberStore.h; sourceTree = "<group>"; };
+		97BECBCB16F21D480056ACCF /* WMNumberStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNumberStore.m; sourceTree = "<group>"; };
+		97BECC0116F21DF80056ACCF /* WMGenericArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMGenericArray.h; sourceTree = "<group>"; };
+		97BECC0216F21DF80056ACCF /* WMGenericCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMGenericCollection.h; sourceTree = "<group>"; };
+		97BECC0316F21DF80056ACCF /* WMGenericCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMGenericCollection.m; sourceTree = "<group>"; };
+		97BECC0416F21DF80056ACCF /* WMGenericDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMGenericDictionary.h; sourceTree = "<group>"; };
+		97BECC0516F21DF80056ACCF /* WMGenericSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMGenericSet.h; sourceTree = "<group>"; };
+		97BECC0716F21DF80056ACCF /* NSArray+Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Map.h"; sourceTree = "<group>"; };
+		97BECC0816F21DF80056ACCF /* WMGenericFunctionalArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMGenericFunctionalArray.h; sourceTree = "<group>"; };
+		97BECC0916F21DF80056ACCF /* WMGenericFunctionalCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMGenericFunctionalCollection.h; sourceTree = "<group>"; };
+		97BECC0A16F21DF80056ACCF /* WMGenericFunctionalCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMGenericFunctionalCollection.m; sourceTree = "<group>"; };
+		97BECC0C16F21DF80056ACCF /* convert.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = convert.py; sourceTree = "<group>"; };
+		97BECC0D16F21DF80056ACCF /* implementation.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = implementation.py; sourceTree = "<group>"; };
+		97BECC0E16F21DF80056ACCF /* parsing.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = parsing.py; sourceTree = "<group>"; };
+		97BECC0F16F21DF80056ACCF /* substitutions.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = substitutions.py; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +153,9 @@
 			children = (
 				97BECB9E16F21C2B0056ACCF /* WMAppDelegate.h */,
 				97BECB9F16F21C2B0056ACCF /* WMAppDelegate.m */,
+				97BECC0B16F21DF80056ACCF /* Conversion */,
+				97BECBFF16F21DF80056ACCF /* Collections */,
+				97BECC1C16F21E460056ACCF /* Usage Example */,
 				97BECBA116F21C2B0056ACCF /* MainMenu.xib */,
 				97BECB9316F21C2B0056ACCF /* Supporting Files */,
 			);
@@ -151,6 +191,62 @@
 				97BECBB216F21C2B0056ACCF /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		97BECBFF16F21DF80056ACCF /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				97BECC0016F21DF80056ACCF /* Cocoa headers */,
+				97BECC0616F21DF80056ACCF /* User created category */,
+			);
+			path = Collections;
+			sourceTree = SOURCE_ROOT;
+		};
+		97BECC0016F21DF80056ACCF /* Cocoa headers */ = {
+			isa = PBXGroup;
+			children = (
+				97BECC0116F21DF80056ACCF /* WMGenericArray.h */,
+				97BECC0216F21DF80056ACCF /* WMGenericCollection.h */,
+				97BECC0316F21DF80056ACCF /* WMGenericCollection.m */,
+				97BECC0416F21DF80056ACCF /* WMGenericDictionary.h */,
+				97BECC0516F21DF80056ACCF /* WMGenericSet.h */,
+			);
+			path = "Cocoa headers";
+			sourceTree = "<group>";
+		};
+		97BECC0616F21DF80056ACCF /* User created category */ = {
+			isa = PBXGroup;
+			children = (
+				97BECC0716F21DF80056ACCF /* NSArray+Map.h */,
+				97BECC0816F21DF80056ACCF /* WMGenericFunctionalArray.h */,
+				97BECC0916F21DF80056ACCF /* WMGenericFunctionalCollection.h */,
+				97BECC0A16F21DF80056ACCF /* WMGenericFunctionalCollection.m */,
+			);
+			path = "User created category";
+			sourceTree = "<group>";
+		};
+		97BECC0B16F21DF80056ACCF /* Conversion */ = {
+			isa = PBXGroup;
+			children = (
+				97BECC0C16F21DF80056ACCF /* convert.py */,
+				97BECC0D16F21DF80056ACCF /* implementation.py */,
+				97BECC0E16F21DF80056ACCF /* parsing.py */,
+				97BECC0F16F21DF80056ACCF /* substitutions.py */,
+			);
+			path = Conversion;
+			sourceTree = SOURCE_ROOT;
+		};
+		97BECC1C16F21E460056ACCF /* Usage Example */ = {
+			isa = PBXGroup;
+			children = (
+				97BECBC616F21D480056ACCF /* WMFraction.h */,
+				97BECBC716F21D480056ACCF /* WMFraction.m */,
+				97BECBC816F21D480056ACCF /* WMNumberArray.h */,
+				97BECBC916F21D480056ACCF /* WMNumberArray.m */,
+				97BECBCA16F21D480056ACCF /* WMNumberStore.h */,
+				97BECBCB16F21D480056ACCF /* WMNumberStore.m */,
+			);
+			name = "Usage Example";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +324,10 @@
 				97BECB9716F21C2B0056ACCF /* InfoPlist.strings in Resources */,
 				97BECB9D16F21C2B0056ACCF /* Credits.rtf in Resources */,
 				97BECBA316F21C2B0056ACCF /* MainMenu.xib in Resources */,
+				97BECC1416F21DF80056ACCF /* convert.py in Resources */,
+				97BECC1616F21DF80056ACCF /* implementation.py in Resources */,
+				97BECC1816F21DF80056ACCF /* parsing.py in Resources */,
+				97BECC1A16F21DF80056ACCF /* substitutions.py in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +336,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				97BECBB416F21C2B0056ACCF /* InfoPlist.strings in Resources */,
+				97BECC1516F21DF80056ACCF /* convert.py in Resources */,
+				97BECC1716F21DF80056ACCF /* implementation.py in Resources */,
+				97BECC1916F21DF80056ACCF /* parsing.py in Resources */,
+				97BECC1B16F21DF80056ACCF /* substitutions.py in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +368,11 @@
 			files = (
 				97BECB9916F21C2B0056ACCF /* main.m in Sources */,
 				97BECBA016F21C2B0056ACCF /* WMAppDelegate.m in Sources */,
+				97BECBCC16F21D480056ACCF /* WMFraction.m in Sources */,
+				97BECBCE16F21D480056ACCF /* WMNumberArray.m in Sources */,
+				97BECBD016F21D480056ACCF /* WMNumberStore.m in Sources */,
+				97BECC1016F21DF80056ACCF /* WMGenericCollection.m in Sources */,
+				97BECC1216F21DF80056ACCF /* WMGenericFunctionalCollection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +381,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				97BECBB716F21C2B0056ACCF /* WMGenericCollectionTests.m in Sources */,
+				97BECBCD16F21D480056ACCF /* WMFraction.m in Sources */,
+				97BECBCF16F21D480056ACCF /* WMNumberArray.m in Sources */,
+				97BECBD116F21D480056ACCF /* WMNumberStore.m in Sources */,
+				97BECC1116F21DF80056ACCF /* WMGenericCollection.m in Sources */,
+				97BECC1316F21DF80056ACCF /* WMGenericFunctionalCollection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
