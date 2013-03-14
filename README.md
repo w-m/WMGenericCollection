@@ -16,26 +16,30 @@ Often, collections make return types or arguments of a method. If they contain a
 Compiler warnings when using incompatible types
 -----------------------------------------------
 
-    WMNumberArray *numberArray;
-    ...
-    NSString *someString = numberArray[0]; // Compiler will warn of incompatible types
+When using collections with a specified value type, the compiler will issue a warning on all actions which assign objects of incompatible types.
+
+![Compiler warnings on incompatible types](/usage examples/set warning.png)
   
 Property access
 ---------------
 
-    WMNumberArray *numberArray;
-    ...
-    NSInteger i = numberArray[0].integerValue; // possible on WMNumberArray, error on NSArray
+Where standard collections return `(id)`, the collections with specified type return objects of this type, enabling for example direct property access.
+
+![Property access of contained values](/usage examples/property access.png)
 
 Automatic code creation improved
 --------------------------------
 
 Xcode automatically creates code for methods that take blocks as arguments. This code is created automatically for the specified type, not for id. This enables property access in the code block, and better code completion.
 
+![Improved code creation](/usage examples/code block.png)
+
 Code completion improved
 ------------------------
 
 When accessing values of a collection, the compiler will know the specified type and will provide much better code completion.
+
+![Improved code completion](/usage examples/code completion.png)
 
 
 Custom NSArray
@@ -44,7 +48,7 @@ Custom NSArray
 To create a custom NSArray containing only NSString, create files for a new Objective-C class, which we will name WMStringArray in this example. Replace the @interface and @implementation blocks with the following:
 
     // WMStringArray.h
-    #import "WMGenericArray.h" // template definition
+    #import "WMGenericArray.h" // import template definitions
   
     WMGENERICARRAY_INTERFACE(NSString *, // type of the value class
                              WMStringArray, WMMutableStringArray) // generated class names
@@ -116,6 +120,15 @@ The code that is created with the macros provides interfaces of classes which
 The SYNTHESIZE macro will create an @implementation block containing `+alloc` and `+allocWithZone:` which will return the objects that are created when calling the methods on the original (inherited) class.
 
 Furthermore, clang is told to ignore duplicated methods (redefinition in subclasses) and missing implementations, as another class is returned on `alloc` and none of the defined methods will ever be called.
+
+Overhead
+--------
+
+There is no overhead in using WMGenericCollections, as they only provide an interface for easier development, but use the standard Cocoa collections in runtime.
+
+As the only implementation provided is that of redirecting object creating, there is a theoretical overhead (of one method call) there, but it does not create an actual measurable difference to normal object creation.
+
+An overhead on method calls on the object after creation is not theoretically possible, as the standard objects are used.
 
 Custom categories and collections
 =================================
