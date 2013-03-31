@@ -140,3 +140,8 @@ This project provides the macro for subclasses of `NSArray`, `NSMutableArray`, `
 The conversion is done with a [python script](Conversion/convert.py) that parses Objective-C header files and generates the macro.
 
 It is possible to generate custom macros for other collections, or categories of the standard Cocoa collections. Some work may be required to get it right. See the README in the [Conversion folder](Conversion/).
+
+License
+=======
+
+WMGenericCollection is available under the MIT license. See the LICENSE file for more info.
