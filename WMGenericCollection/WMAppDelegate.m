@@ -66,6 +66,23 @@
     NSLog(@"%@", urlSchemes);
 }
 
+- (void)assignMutableToNonMutableArray {
+
+    WMMutableStringArray *mutable = [WMMutableStringArray arrayWithObject:@"abc"];
+    WMStringArray *nonMutable;
+
+    // cannot assign mutable to non-mutable without casting
+    // generic mutable array does not inherit from generic array
+    nonMutable = mutable;
+
+    // can assign a copy without problems
+    nonMutable = [mutable copy];
+
+    // generic mutable array can be used interchangeably with NSMutableArray
+    self.myNSMutableArray = mutable;
+}
+
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     [self stringArrays];
     [self numberExample];
