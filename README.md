@@ -1,4 +1,6 @@
-Generics for Cocoa collections: providing templates to easily create custom Objective-C collection subclasses. The custom classes store a fixed type - e.g. an array which only stores NSString instances.
+Objective-C Generics that provide compile time type safety for Cocoa collection classes.
+
+Generics are implemented by using templates to easily create custom collection subclasses. The custom classes store a fixed type, e.g. an array which only stores NSString instances. The custom subclasses can be used as a drop-in replacement for NSArray, NSDictionary and NSSet, and are safe to use; they do not collide with each other or their parent class.
 
 This enables the compiler to generate warnings on incompatible types, allows for easier property access for container members, and enables much improved code completion as well as overall more readale and self-documenting code.
 
