@@ -77,6 +77,14 @@ When accessing values of a collection, the compiler will know the specified type
 
 ![Improved code completion](/usage examples/code completion.png)
 
+#### No magic, no collisions, no misuse of protocol-conformity
+
+There's no magic, the implementation of these generics is very simple: subclassing the collection with a straight copy of the interface, only replacing id with the desired types.
+
+A conscious decision was made to not use the common (e.g. in Java or C#) syntax of generics, `NSArray<NSString>`. Misusing the protocol conformance syntax for generic collections calls for subtle bugs.
+
+When using WMGenericCollection, only the subclasses given via the macro-params are created, nothing more. WMGenericCollection does not make use of protocols and does not create any hidden protocols. Every subclass lives by its own, making it safe to mix them freely in your code, avoiding any collision with one another or the standard Cocoa collection classes.
+
 <br\>
 <br\>
 
